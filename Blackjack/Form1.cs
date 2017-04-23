@@ -1,4 +1,4 @@
-﻿using Blackjack.Cartas;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,19 +26,19 @@ namespace Blackjack
 
         private void Prueba()
         {
-            Carta carta = new Carta();
-            Dictionary<string, string> datos = carta.BarajarYRepartir();
-            string direccion = datos.Where(i => i.Key.Equals("cards")).Select(i => i.Value).First().ToString();
+          //  Carta carta = new Carta();
+          //  Dictionary<string, string> datos = carta.BarajarYRepartir(1);
+          //  string direccion = datos.Where(i => i.Key.Equals("cards")).Select(i => i.Value).First().ToString();
 
 
-            string[] h = direccion.Split('"');
+          //  string[] h = direccion.Split('"');
 
-            string s = h[3];
-            string k = h[29];
+           // string s = h[3];
+          //  string k = h[29];
 
             
 
-            CrearCartas(pnlCartas2,new String[] { s,k});
+           // CrearCartas(pnlCartas2,new String[] { s,k});
 
 
 

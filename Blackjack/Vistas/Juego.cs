@@ -1,4 +1,5 @@
-﻿using Blackjack.Cartas;
+﻿using Blackjack.Controladores;
+using Blackjack.Modelos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,29 +16,29 @@ namespace Blackjack.Vistas
 {
     public partial class Juego : Form
     {
+
+        private CartaControl ocartacontrol;
+        private string deck_id_actual;
+
+
         public Juego()
         {
             InitializeComponent();
+            this.ocartacontrol = new CartaControl();
             Prueba();
         }
 
 
         private void Prueba()
         {
-            Carta carta = new Carta();
-            Dictionary<string, string> datos = carta.BarajarYRepartir();
-            string direccion = datos.Where(i => i.Key.Equals("cards")).Select(i => i.Value).First().ToString();
-
-
-            string[] h = direccion.Split('"');
-
-            string s = h[3];
-            string k = h[29];
 
 
 
-            CartasCasa(pnlCartasCasa, new String[] { s, k });
-            CrearCartas(panel1, new String[] { s, k });
+            CartasIniciales(pnlCartasCasa,true);
+            CartasIniciales(panel1);
+            // CartasCasa(pnlCartasCasa, new String[] { s, k ,s,k,s,k});
+
+            //CrearCartas(panel1, TraerCarta(1));
 
 
 
@@ -52,6 +53,7 @@ namespace Blackjack.Vistas
 
 
         }
+
 
 
         private void CartasCasa(Panel panelCartas, string[] cartas = null)
@@ -83,6 +85,34 @@ namespace Blackjack.Vistas
                     x = x - 32;
             }
         }
+
+
+        private void CartasIniciales(Panel panelCartas, bool isCasa=false) {
+
+            int x = 137, y = 22; // x+32
+            string[] cartas = this.ocartacontrol.BarajarYRepartir(ref deck_id_actual); 
+
+            PictureBox[] pics = new PictureBox[cartas.Length];
+            ResourceManager rm = new ResourceManager("Blackjack.Properties.Resources", Assembly.GetExecutingAssembly());
+            for (int i = 0; i < pics.Length; i++)
+            {
+                pics[i] = new PictureBox();
+                pics[i].Anchor = AnchorStyles.Top;
+                pics[i].Size = new Size(87, 117);
+                pics[i].Location = new Point(x,y);
+                pics[i].BringToFront();
+                pics[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                if(i==1 && isCasa)
+                    pics[i].Image = (Image)rm.GetObject("BA");
+                else
+                    pics[i].Image = (Image)rm.GetObject(string.Format("_{0}", cartas[i]));
+
+                panelCartas.Controls.Add(pics[i]);
+
+                x = x - 32;
+            }
+        }
+
 
         private void CrearCartas(Panel panelCartas, string[] cartas = null)
         {
@@ -118,5 +148,7 @@ namespace Blackjack.Vistas
         {
 
         }
+
+
     }
 }

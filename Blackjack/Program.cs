@@ -1,5 +1,4 @@
-﻿using Blackjack.Cartas;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using DBAccess;
 using System.Configuration;
