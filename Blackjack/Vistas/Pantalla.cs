@@ -23,8 +23,8 @@ namespace Blackjack.Vistas
         ResourceManager rm = new ResourceManager("Blackjack.Properties.Resources", Assembly.GetExecutingAssembly());
         private CartaControl ocartacontrol;
         private string deck_id_actual, carta_tapada;
-        private PictureBox pBCasa;
-        int casa, jugador, tipo, cartas_jugador = 2,cartas_casa=2;
+        private PictureBox picCasa, picCartaSplit;
+        int casa, jugador, jugador_split,tipo, cartas_jugador = 2,cartas_casa=2,cartas_jugador_split;
         Boolean casa_As = false, jugador_As = false;
         int casa_ganadas=0, jugador_ganadas=0,empates=0;
 
@@ -85,7 +85,7 @@ namespace Blackjack.Vistas
                             pics[i].Image = (Image)rm.GetObject("BA");
                             tipo += ConvertirNumeros(cartas[i], isCasa);
                             carta_tapada = string.Format("_{0}", cartas[i]);
-                            pBCasa = pics[i];
+                            picCasa = pics[i];
                         }
                         else
                         {
@@ -106,7 +106,19 @@ namespace Blackjack.Vistas
                         {
                             isSeguro(cartas[i]);
                         }
+                    if (i == 1 && !isCasa && cartas[0].Substring(0,1) == cartas[i].Substring(0, 1)) 
+                            isSplit(pics[i]);
                     });
+                    if (picCartaSplit != null && !isCasa) {
+                        Transition t = new Transition(new TransitionType_CriticalDamping(2000));
+                        t.add(picCartaSplit, "Left", 230);
+                        t.run();
+                        cartas_jugador--; ;
+                        tipo = tipo- ConvertirNumeros(cartas[i], isCasa);
+                        jugador_split = tipo;
+                        cartas_jugador_split++;
+                        Console.WriteLine(picCartaSplit.Location.ToString());
+                    }                        
                 }
 
             }
@@ -167,6 +179,14 @@ namespace Blackjack.Vistas
             Resultado();
         }
 
+        private void ExecuteInForegroundPedirCartaSplit()
+        {
+            PedirCartaSplit(cartas_jugador_split);
+            jugador_split++;
+            cartas_jugador_split++;
+            Resultado();
+        }
+
         private void ExecuteInForegroundPedirCartaCasa()
 
         {
@@ -176,10 +196,10 @@ namespace Blackjack.Vistas
                 {
                     PedirCarta(cartas_casa, true);
                     casa += tipo;
-                    pBCasa.Image = (Image)rm.GetObject(carta_tapada);
+                    picCasa.Image = (Image)rm.GetObject(carta_tapada);
                 }
                 Resultado(true);
-                Thread.Sleep(2000);
+                Thread.Sleep(500);
                 if (casa >= 17)
                 {
                     this.Invoke((MethodInvoker)delegate {
@@ -194,18 +214,14 @@ namespace Blackjack.Vistas
 
         private void ExecuteInForeground()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
                 this.Invoke((MethodInvoker)delegate {
                     lblPensando.Text = lblPensando.Text + ".";
                 });
-                Thread.Sleep(1000);
+                Thread.Sleep(300);
             }
 
-        }
-
-        private void ExecuteInForegroundSeguro() {
-           
         }
 
         private void PedirCarta(int cartas_total,bool isCasa = false)
@@ -261,6 +277,48 @@ namespace Blackjack.Vistas
             }
         }
 
+        private void PedirCartaSplit(int cartas_total, bool isCasa = false)
+        {
+            int count = cartas_total;
+
+            int x = 230 - (20 * count), y = 0;
+
+
+            string[] cartas = this.ocartacontrol.Repartir(deck_id_actual, 1);
+
+            PictureBox[] pics = new PictureBox[cartas.Length];
+            for (int i = 0; i < pics.Length; i++)
+            {
+                if (cartas[i] != null)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+
+                        y = 316;
+                        pics[i] = new PictureBox();
+                        pics[i].Anchor = AnchorStyles.Top;
+                        pics[i].Size = new Size(76, 103);
+                        pics[i].Location = new Point(x, y);
+                        pics[i].BringToFront();
+                        pics[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                        pics[i].Image = (Image)rm.GetObject(string.Format("_{0}", cartas[i]));
+                        tipo = ConvertirNumeros(cartas[i], isCasa);
+                        this.Controls.Add(pics[i]);
+                        pnlCartasJugador.SendToBack();
+                        pnlCartasCasa.SendToBack();
+                        pnlMain.SendToBack();
+                        x = x - 20;
+                    });
+                    Thread.Sleep(500);
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        tilePedirCarta.Enabled = true;
+                    });
+
+                }
+            }
+        }
+
         private void Resultado(bool isPlanto = false)
         {
             this.Invoke((MethodInvoker)delegate {
@@ -272,17 +330,17 @@ namespace Blackjack.Vistas
             switch (r.resultado(casa, jugador, casa_As, jugador_As, cartas_jugador, isPlanto,ref jugador,ref casa))
             {
                 case 'c':
-                    pBCasa.Image = (Image)rm.GetObject(carta_tapada);
+                    picCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("GANO CASA");
                     casa_ganadas++;
                     break;
                 case 'j':
-                    pBCasa.Image = (Image)rm.GetObject(carta_tapada);
+                    picCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("GANO JUGADOR");
                     jugador_ganadas++;
                     break;
                 case 'e':
-                    pBCasa.Image = (Image)rm.GetObject(carta_tapada);
+                    picCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("EMPATO");
                     empates++;
                     break;
@@ -291,8 +349,9 @@ namespace Blackjack.Vistas
                     break;
             }
 
-            Console.WriteLine("Casa{0} ", casa);
-            Console.WriteLine("Jugador{0} ", jugador);
+            Console.WriteLine("Casa {0} ", casa);
+            Console.WriteLine("Jugador {0} ", jugador);
+            Console.WriteLine("Jugador Split {0} ", jugador_split);
 
             this.Invoke((MethodInvoker)delegate {
                 if (jugador == 9 || jugador == 10 || jugador == 11 && cartas_jugador == 2)
@@ -333,12 +392,13 @@ namespace Blackjack.Vistas
 
         private void estadísticasDeLaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MetroMessageBox.Show(this, string.Format("\nCasa: {0} \nJugador: {1}", casa_ganadas, jugador_ganadas), "Partidas resultados", 150);
+            MetroMessageBox.Show(this, string.Format("\nCasa: {0} \nJugador: {1} \nEmpates: {2}", casa_ganadas, jugador_ganadas,empates), "Partidas resultados", 160);
         }
 
         private void tileDoblar_Click(object sender, EventArgs e)
         {
-            tilePedirCarta.Enabled = false;
+            tileDoblar.Enabled = false;
+            tileDoblar.BackColor = Color.DarkGray;
             new Thread(ExecuteInForegroundPedirCarta).Start();
 
             pickFichasDoblar.Visible = true;
@@ -369,10 +429,31 @@ namespace Blackjack.Vistas
 
         }
 
+        private void isSplit(PictureBox pic) {
+
+                DialogResult dr = MetroMessageBox.Show(this, "¿Deseas hacer split?", "Separar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, 100);
+                if (dr == DialogResult.Yes)
+                {
+                picCartaSplit = pic;
+
+                }
+
+        }
+
         private void tilePedirCarta_Click_1(object sender, EventArgs e)
         {
             tilePedirCarta.Enabled = false;
-            new Thread(ExecuteInForegroundPedirCarta).Start();
+
+            if (picCartaSplit != null) {
+                DialogResult dr = MetroMessageBox.Show(this, "¿A cual deseas apostar? (yes=derecha, no=izquierda)", "Split", MessageBoxButtons.YesNo, MessageBoxIcon.Question, 100);
+                if (dr != DialogResult.Yes)
+                {
+                    new Thread(ExecuteInForegroundPedirCarta).Start();
+                    return;
+                }
+                new Thread(ExecuteInForegroundPedirCartaSplit).Start();
+            }
+
         }
 
         private void tilePlantarse_Click(object sender, EventArgs e)

@@ -76,6 +76,9 @@
     <Reference Include="HelpersSQL">
       <HintPath>..\..\..\..\Visual Studio 2015\Projects\HelpersSQL\HelpersSQL\bin\Release\HelpersSQL.dll</HintPath>
     </Reference>
+    <Reference Include="MessageBoxManager">
+      <HintPath>C:\Users\Kendall Umaña\Documents\MessageBoxManager.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
     </Reference>
