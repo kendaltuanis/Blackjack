@@ -92,8 +92,11 @@ namespace Blackjack.Vistas
                     if ((i + 1) == pics.Length && isCasa)
                 {
                         new Thread(TraerPanelBotones).Start();
-                        pnlBotones.Visible = true;
+                        pnlBotones.Visible = true;                       
                 }
+                    if (i == 0 && isCasa) {
+                        isSeguro(cartas[i]);
+                    }
             });
 
         }
@@ -254,12 +257,15 @@ namespace Blackjack.Vistas
             switch (r.resultado(casa, jugador, casa_As, jugador_As, cartas_jugador, isPlanto,ref jugador,ref casa))
             {
                 case 'c':
+                    pBCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("GANO CASA");
                     break;
                 case 'j':
+                    pBCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("GANO JUGADOR");
                     break;
                 case 'e':
+                    pBCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("EMPATO");
                     break;
                 case 'n':
@@ -303,7 +309,13 @@ namespace Blackjack.Vistas
 
             if (carta.Substring(0, 1).Equals("A")) {
 
-                MetroMessageBox.Show(this, "¿Deseas activar el seguro?", "Seguro", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand);
+                DialogResult dr = MetroMessageBox.Show(this, "¿Deseas activar el seguro?", "Seguro", MessageBoxButtons.YesNo, MessageBoxIcon.Question,100);
+                if (dr == DialogResult.Yes)
+                {
+                    Transition t = new Transition(new TransitionType_CriticalDamping(2000));
+                    t.add(picSeguro, "Top", 250);
+                    t.run();
+                }
             }
 
         }

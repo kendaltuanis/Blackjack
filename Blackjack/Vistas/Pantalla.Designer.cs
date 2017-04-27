@@ -31,38 +31,42 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pantalla));
             this.tilePedirCarta = new MetroFramework.Controls.MetroTile();
             this.pnlBotones = new MetroFramework.Controls.MetroPanel();
+            this.tilePlantarse = new MetroFramework.Controls.MetroTile();
             this.trackFichas = new MetroFramework.Controls.MetroTrackBar();
             this.pnlCartasCasa = new System.Windows.Forms.Panel();
             this.lblFichas = new MetroFramework.Controls.MetroLabel();
             this.pnlCartasJugador = new System.Windows.Forms.Panel();
-            this.tilePlantarse = new MetroFramework.Controls.MetroTile();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileApostar = new MetroFramework.Controls.MetroTile();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.pBArriba = new System.Windows.Forms.PictureBox();
-            this.pbDebajo = new System.Windows.Forms.PictureBox();
-            this.picFichas = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblSi = new System.Windows.Forms.Label();
+            this.lblPensando = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menúToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reiniciarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.partidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lblPensando = new System.Windows.Forms.Label();
+            this.lblSi = new System.Windows.Forms.Label();
+            this.pBArriba = new System.Windows.Forms.PictureBox();
+            this.pbDebajo = new System.Windows.Forms.PictureBox();
+            this.picFichas = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picSeguro = new System.Windows.Forms.PictureBox();
+            this.estadísticasDeLaPartidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebarajarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlBotones.SuspendLayout();
             this.pnlMain.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBArriba)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebajo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFichas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSeguro)).BeginInit();
             this.SuspendLayout();
             // 
             // tilePedirCarta
@@ -102,6 +106,24 @@
             this.pnlBotones.VerticalScrollbarHighlightOnWheel = false;
             this.pnlBotones.VerticalScrollbarSize = 10;
             this.pnlBotones.Visible = false;
+            // 
+            // tilePlantarse
+            // 
+            this.tilePlantarse.ActiveControl = null;
+            this.tilePlantarse.BackColor = System.Drawing.Color.LightGray;
+            this.tilePlantarse.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tilePlantarse.Location = new System.Drawing.Point(169, 12);
+            this.tilePlantarse.Name = "tilePlantarse";
+            this.tilePlantarse.Size = new System.Drawing.Size(110, 35);
+            this.tilePlantarse.TabIndex = 6;
+            this.tilePlantarse.Text = "Plantarse";
+            this.tilePlantarse.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tilePlantarse.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tilePlantarse.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.tilePlantarse.UseCustomBackColor = true;
+            this.tilePlantarse.UseCustomForeColor = true;
+            this.tilePlantarse.UseSelectable = true;
+            this.tilePlantarse.Click += new System.EventHandler(this.tilePlantarse_Click);
             // 
             // trackFichas
             // 
@@ -153,24 +175,6 @@
             this.pnlCartasJugador.Size = new System.Drawing.Size(323, 129);
             this.pnlCartasJugador.TabIndex = 2;
             // 
-            // tilePlantarse
-            // 
-            this.tilePlantarse.ActiveControl = null;
-            this.tilePlantarse.BackColor = System.Drawing.Color.LightGray;
-            this.tilePlantarse.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tilePlantarse.Location = new System.Drawing.Point(169, 12);
-            this.tilePlantarse.Name = "tilePlantarse";
-            this.tilePlantarse.Size = new System.Drawing.Size(110, 35);
-            this.tilePlantarse.TabIndex = 6;
-            this.tilePlantarse.Text = "Plantarse";
-            this.tilePlantarse.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.tilePlantarse.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.tilePlantarse.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
-            this.tilePlantarse.UseCustomBackColor = true;
-            this.tilePlantarse.UseCustomForeColor = true;
-            this.tilePlantarse.UseSelectable = true;
-            this.tilePlantarse.Click += new System.EventHandler(this.tilePlantarse_Click);
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -200,6 +204,7 @@
             // pnlMain
             // 
             this.pnlMain.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.pnlMain.Controls.Add(this.picSeguro);
             this.pnlMain.Controls.Add(this.lblPensando);
             this.pnlMain.Controls.Add(this.panel6);
             this.pnlMain.Controls.Add(this.panel5);
@@ -209,6 +214,120 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(497, 530);
             this.pnlMain.TabIndex = 13;
+            // 
+            // lblPensando
+            // 
+            this.lblPensando.AutoSize = true;
+            this.lblPensando.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPensando.Location = new System.Drawing.Point(249, 200);
+            this.lblPensando.Name = "lblPensando";
+            this.lblPensando.Size = new System.Drawing.Size(145, 33);
+            this.lblPensando.TabIndex = 4;
+            this.lblPensando.Text = "Pensando";
+            this.lblPensando.Visible = false;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.DimGray;
+            this.panel6.Location = new System.Drawing.Point(-11, 448);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(503, 79);
+            this.panel6.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.label3);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Location = new System.Drawing.Point(21, 179);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(141, 63);
+            this.panel5.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Baskerville Old Face", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(7, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "El seguro se paga 2 a 1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Baskerville Old Face", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "El BlackJack se paga 3 a 2";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Baskerville Old Face", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(7, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(125, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "La banca se planta con 17";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menúToolStripMenuItem,
+            this.partidasToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(497, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menúToolStripMenuItem
+            // 
+            this.menúToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reiniciarToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.menúToolStripMenuItem.Name = "menúToolStripMenuItem";
+            this.menúToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menúToolStripMenuItem.Text = "Menú";
+            // 
+            // reiniciarToolStripMenuItem
+            // 
+            this.reiniciarToolStripMenuItem.Name = "reiniciarToolStripMenuItem";
+            this.reiniciarToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.reiniciarToolStripMenuItem.Text = "Nuevo juego";
+            this.reiniciarToolStripMenuItem.Click += new System.EventHandler(this.reiniciarToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            // 
+            // partidasToolStripMenuItem
+            // 
+            this.partidasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.estadísticasDeLaPartidaToolStripMenuItem,
+            this.rebarajarToolStripMenuItem});
+            this.partidasToolStripMenuItem.Name = "partidasToolStripMenuItem";
+            this.partidasToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.partidasToolStripMenuItem.Text = "Partidas ";
+            // 
+            // lblSi
+            // 
+            this.lblSi.AutoSize = true;
+            this.lblSi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblSi.Font = new System.Drawing.Font("Sitka Heading", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSi.Location = new System.Drawing.Point(96, 200);
+            this.lblSi.Name = "lblSi";
+            this.lblSi.Size = new System.Drawing.Size(0, 16);
+            this.lblSi.TabIndex = 0;
             // 
             // pBArriba
             // 
@@ -258,116 +377,28 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // lblSi
+            // picSeguro
             // 
-            this.lblSi.AutoSize = true;
-            this.lblSi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblSi.Font = new System.Drawing.Font("Sitka Heading", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSi.Location = new System.Drawing.Point(96, 200);
-            this.lblSi.Name = "lblSi";
-            this.lblSi.Size = new System.Drawing.Size(0, 16);
-            this.lblSi.TabIndex = 0;
+            this.picSeguro.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.picSeguro.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picSeguro.BackgroundImage")));
+            this.picSeguro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picSeguro.Location = new System.Drawing.Point(415, 344);
+            this.picSeguro.Name = "picSeguro";
+            this.picSeguro.Size = new System.Drawing.Size(51, 43);
+            this.picSeguro.TabIndex = 14;
+            this.picSeguro.TabStop = false;
             // 
-            // menuStrip1
+            // estadísticasDeLaPartidaToolStripMenuItem
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menúToolStripMenuItem,
-            this.partidasToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(497, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.estadísticasDeLaPartidaToolStripMenuItem.Name = "estadísticasDeLaPartidaToolStripMenuItem";
+            this.estadísticasDeLaPartidaToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.estadísticasDeLaPartidaToolStripMenuItem.Text = "Estadísticas de la Partida";
             // 
-            // menúToolStripMenuItem
+            // rebarajarToolStripMenuItem
             // 
-            this.menúToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reiniciarToolStripMenuItem,
-            this.salirToolStripMenuItem});
-            this.menúToolStripMenuItem.Name = "menúToolStripMenuItem";
-            this.menúToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.menúToolStripMenuItem.Text = "Menú";
-            // 
-            // reiniciarToolStripMenuItem
-            // 
-            this.reiniciarToolStripMenuItem.Name = "reiniciarToolStripMenuItem";
-            this.reiniciarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reiniciarToolStripMenuItem.Text = "Nuevo juego";
-            this.reiniciarToolStripMenuItem.Click += new System.EventHandler(this.reiniciarToolStripMenuItem_Click);
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            // 
-            // partidasToolStripMenuItem
-            // 
-            this.partidasToolStripMenuItem.Name = "partidasToolStripMenuItem";
-            this.partidasToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
-            this.partidasToolStripMenuItem.Text = "Partidas ";
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Location = new System.Drawing.Point(21, 179);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(141, 63);
-            this.panel5.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Baskerville Old Face", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "El seguro se paga 2 a 1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Baskerville Old Face", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "El BlackJack se paga 3 a 2";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Baskerville Old Face", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(7, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "La banca se planta con 17";
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.DimGray;
-            this.panel6.Location = new System.Drawing.Point(-11, 448);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(503, 79);
-            this.panel6.TabIndex = 3;
-            // 
-            // lblPensando
-            // 
-            this.lblPensando.AutoSize = true;
-            this.lblPensando.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPensando.Location = new System.Drawing.Point(249, 200);
-            this.lblPensando.Name = "lblPensando";
-            this.lblPensando.Size = new System.Drawing.Size(145, 33);
-            this.lblPensando.TabIndex = 4;
-            this.lblPensando.Text = "Pensando";
-            this.lblPensando.Visible = false;
+            this.rebarajarToolStripMenuItem.Name = "rebarajarToolStripMenuItem";
+            this.rebarajarToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.rebarajarToolStripMenuItem.Text = "Rebarajar";
             // 
             // Pantalla
             // 
@@ -393,14 +424,15 @@
             this.pnlBotones.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBArriba)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebajo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFichas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSeguro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -434,5 +466,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblPensando;
+        private System.Windows.Forms.PictureBox picSeguro;
+        private System.Windows.Forms.ToolStripMenuItem estadísticasDeLaPartidaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rebarajarToolStripMenuItem;
     }
 }

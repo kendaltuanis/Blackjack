@@ -199,3 +199,4 @@ C:\Users\kenda\Documents\Visual Studio 2017\Projects\Black\Blackjack\Blackjack\o
 C:\Users\kenda\Documents\Visual Studio 2017\Projects\Black\Blackjack\Blackjack\obj\Debug\Blackjack.exe
 C:\Users\kenda\Documents\Visual Studio 2017\Projects\Black\Blackjack\Blackjack\obj\Debug\Blackjack.pdb
 C:\Users\kenda\Documents\Visual Studio 2017\Projects\Black\Blackjack\Blackjack\obj\Debug\Blackjack.Vistas.Pantalla.resources
+D:\Github\Blackjack\Blackjack\obj\Debug\Blackjack.Vistas.Pantalla.resources
