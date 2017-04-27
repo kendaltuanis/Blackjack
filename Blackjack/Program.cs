@@ -24,7 +24,7 @@ namespace Blackjack
 
             Program.connection = new SqliteAccess(connectionString);
 
-            Application.Run(new Blackjack.Vistas.Juego());
+            Application.Run(new Blackjack.Vistas.Pantalla());
         }
     }
 }
