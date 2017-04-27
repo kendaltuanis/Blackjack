@@ -39,7 +39,7 @@ namespace Blackjack.Modelos
         }
 
         // Retorna las cartas que quiera conforme al id del mazo
-        public string[] Repartir(string id, int iniciales) {
+        public string[] Repartir(string id, int iniciales=2) {
             restRequest.Resource = string.Format(Constantes.REPARTIR_CARTAS, id, iniciales);
 
             IRestResponse response = client.Execute(restRequest);

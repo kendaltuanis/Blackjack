@@ -21,7 +21,7 @@ namespace Blackjack.Controladores
             return this.ocarta.ReBarajar(id);
         }
 
-        public string[] Repartir(string id, int iniciales = 2)
+        public string[] Repartir(string id, int iniciales)
         {
             return this.ocarta.Repartir(id,iniciales);
         }

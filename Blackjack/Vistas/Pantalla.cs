@@ -26,6 +26,7 @@ namespace Blackjack.Vistas
         private PictureBox pBCasa;
         int casa, jugador, tipo, cartas_jugador = 2,cartas_casa=2;
         Boolean casa_As = false, jugador_As = false;
+        int casa_ganadas=0, jugador_ganadas=0,empates=0;
 
         public Pantalla()
         {
@@ -40,66 +41,75 @@ namespace Blackjack.Vistas
                 x = 255;
             else
                 x = 375;
+            string[] cartas;
 
-            string[] cartas = this.ocartacontrol.BarajarYRepartir(ref deck_id_actual);
+            if (deck_id_actual==null)
+                cartas = this.ocartacontrol.BarajarYRepartir(ref deck_id_actual);
+            else
+                cartas = this.ocartacontrol.Repartir(deck_id_actual,2);
+
             tipo = 0;
 
             PictureBox[] pics = new PictureBox[cartas.Length];
             for (int i = 0; i < pics.Length; i++)
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                y = 53;
-                pics[i] = new PictureBox();
-                pics[i].Anchor = AnchorStyles.Top;
-                pics[i].Size = new Size(76, 103);
-                pics[i].Location = new Point(x, y);               
-                pics[i].BringToFront();
-                pics[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                this.Controls.Add(pics[i]);
-                    pnlCartasJugador.SendToBack();
-                    pnlCartasCasa.SendToBack();
-                    pnlMain.SendToBack();
-                    Transition t = new Transition(new TransitionType_CriticalDamping(2000));
-                    if (isCasa)
-                    {                     
-                     //   t.add(pics[i], "Left", 250);
-
-                    }
-                    else {
-                        t.add(pics[i], "Top", 316);
-                    }
-
-                    t.run();
-
-                    if (i == 1 && isCasa)
+                if (cartas[i] != null) {
+                    this.Invoke((MethodInvoker)delegate
                     {
-                        pics[i].Image = (Image)rm.GetObject("BA");
-                        tipo += ConvertirNumeros(cartas[i], isCasa);
-                        carta_tapada = string.Format("_{0}", cartas[i]);
-                        pBCasa = pics[i];
-                    }
-                    else
+                        y = 53;
+                        pics[i] = new PictureBox();
+                        pics[i].Anchor = AnchorStyles.Top;
+                        pics[i].Size = new Size(76, 103);
+                        pics[i].Location = new Point(x, y);
+                        pics[i].BringToFront();
+                        pics[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                        this.Controls.Add(pics[i]);
+                        pnlCartasJugador.SendToBack();
+                        pnlCartasCasa.SendToBack();
+                        pnlMain.SendToBack();
+                        Transition t = new Transition(new TransitionType_CriticalDamping(2000));
+                        if (isCasa)
+                        {
+                            //   t.add(pics[i], "Left", 250);
+
+                        }
+                        else
+                        {
+                            t.add(pics[i], "Top", 316);
+                        }
+
+                        t.run();
+
+                        if (i == 1 && isCasa)
+                        {
+                            pics[i].Image = (Image)rm.GetObject("BA");
+                            tipo += ConvertirNumeros(cartas[i], isCasa);
+                            carta_tapada = string.Format("_{0}", cartas[i]);
+                            pBCasa = pics[i];
+                        }
+                        else
+                        {
+                            pics[i].Image = (Image)rm.GetObject(string.Format("_{0}", cartas[i]));
+                            tipo += ConvertirNumeros(cartas[i], isCasa);
+                        }
+                        x = x - 20;
+                    });
+                    Thread.Sleep(500);
+                    this.Invoke((MethodInvoker)delegate
                     {
-                        pics[i].Image = (Image)rm.GetObject(string.Format("_{0}", cartas[i]));
-                        tipo += ConvertirNumeros(cartas[i], isCasa);
-                    }
-                        x = x - 20;                                          
-                });
-                Thread.Sleep(500);
-                this.Invoke((MethodInvoker)delegate
-                {
-                    if ((i + 1) == pics.Length && isCasa)
-                {
-                        new Thread(TraerPanelBotones).Start();
-                        pnlBotones.Visible = true;                       
+                        if ((i + 1) == pics.Length && isCasa)
+                        {
+                            new Thread(TraerPanelBotones).Start();
+                            pnlBotones.Visible = true;
+                        }
+                        if (i == 0 && isCasa)
+                        {
+                            isSeguro(cartas[i]);
+                        }
+                    });
                 }
-                    if (i == 0 && isCasa) {
-                        isSeguro(cartas[i]);
-                    }
-            });
 
-        }
+            }
         }
 
         private int ConvertirNumeros(string carta, Boolean isCasa)
@@ -253,20 +263,28 @@ namespace Blackjack.Vistas
 
         private void Resultado(bool isPlanto = false)
         {
+            this.Invoke((MethodInvoker)delegate {
+                lblDeck.Text = string.Format("Deck_id:   {0}", deck_id_actual);
+            });
+
+
             Reglas r = new Reglas();
             switch (r.resultado(casa, jugador, casa_As, jugador_As, cartas_jugador, isPlanto,ref jugador,ref casa))
             {
                 case 'c':
                     pBCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("GANO CASA");
+                    casa_ganadas++;
                     break;
                 case 'j':
                     pBCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("GANO JUGADOR");
+                    jugador_ganadas++;
                     break;
                 case 'e':
                     pBCasa.Image = (Image)rm.GetObject(carta_tapada);
                     Console.WriteLine("EMPATO");
+                    empates++;
                     break;
                 case 'n':
                     Console.WriteLine("NADA");
@@ -276,11 +294,19 @@ namespace Blackjack.Vistas
             Console.WriteLine("Casa{0} ", casa);
             Console.WriteLine("Jugador{0} ", jugador);
 
+            this.Invoke((MethodInvoker)delegate {
+                if (jugador == 9 || jugador == 10 || jugador == 11 && cartas_jugador == 2)
+                {
+                    tileDoblar.BackColor = Color.LightGray;
+                    tileDoblar.Enabled = true;
+                }
+            }); 
+
         }
 
         private void OcultarTrack()
         {
-            Transition.run(trackFichas, "BackColor", Color.Gray, new TransitionType_Flash(100, 200));
+            Transition.run(tileApostar, "BackColor", Color.Gray, new TransitionType_Linear(500));
             Thread.Sleep(500);
             this.Invoke((MethodInvoker)delegate
             {
@@ -290,7 +316,7 @@ namespace Blackjack.Vistas
         }
 
         private void OcultarControles() {
-            Transition.run(tileApostar, "BackColor", Color.Gray, new TransitionType_Flash(100, 200));
+            Transition.run(tileApostar, "BackColor", Color.Gray, new TransitionType_Linear( 500));
             Thread.Sleep(500);
             this.Invoke((MethodInvoker)delegate
             {
@@ -303,6 +329,29 @@ namespace Blackjack.Vistas
             Transition.run(pnlBotones, "BackColor", Color.DimGray, new TransitionType_Linear(1000));
             Thread.Sleep(500);
 
+        }
+
+        private void estadísticasDeLaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MetroMessageBox.Show(this, string.Format("\nCasa: {0} \nJugador: {1}", casa_ganadas, jugador_ganadas), "Partidas resultados", 150);
+        }
+
+        private void tileDoblar_Click(object sender, EventArgs e)
+        {
+            tilePedirCarta.Enabled = false;
+            new Thread(ExecuteInForegroundPedirCarta).Start();
+
+            pickFichasDoblar.Visible = true;
+            pickFichasDoblar.BringToFront();
+            Transition t = new Transition(new TransitionType_CriticalDamping(2000));
+            t.add(pickFichasDoblar, "Left", 88);
+            t.run();
+
+        }
+
+        private void rebarajarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ocartacontrol.ReBarajar(deck_id_actual);
         }
 
         private void isSeguro(string carta) {
