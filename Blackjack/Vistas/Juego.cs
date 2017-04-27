@@ -131,7 +131,7 @@ namespace Blackjack.Vistas
 
         private void Resultado(bool isPlanto=false) {
             Reglas r = new Reglas();
-            switch (r.resultado(casa, jugador, casa_As, jugador_As, cartas_jugador, isPlanto))
+            switch (r.resultado(casa, jugador, casa_As, jugador_As, cartas_jugador, isPlanto,ref jugador,ref casa))
             {
                 case 'c':
                     Console.WriteLine("GANO CASA");

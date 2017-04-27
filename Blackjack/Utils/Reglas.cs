@@ -9,15 +9,15 @@ namespace Blackjack.Utils
     public class Reglas
     {
 
-        public Char resultado(int casa,int jugador,bool AS_casa,bool AS_jugador,int cartas_jugador,bool isPlanto) {
+        public Char resultado(int casa,int jugador,bool AS_casa,bool AS_jugador,int cartas_jugador,bool isPlanto,ref int juga,ref int casaa) {
 
            // if (cartas > 5)
              //   return 'c';
 
-            if (Perdio(jugador,AS_jugador,ref jugador))
+            if (Perdio(jugador,AS_jugador,ref jugador,ref juga))
                 return 'c';
 
-            if (Perdio(casa,AS_casa,ref casa))
+            if (Perdio(casa,AS_casa,ref casa,ref casaa))
                 return 'j';
 
             if (Empate(casa, jugador) && casa>=17 && isPlanto)
@@ -42,7 +42,7 @@ namespace Blackjack.Utils
         }
 
 
-        private Boolean Perdio(int suma,bool isAs,ref int sumaN,bool isCasa=false) {
+        private Boolean Perdio(int suma,bool isAs,ref int sumaN,ref int sumaT,bool isCasa=false) {
 
             if ((isAs && (suma - 10) < 21) && suma >21) {
 

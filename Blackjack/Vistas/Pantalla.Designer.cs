@@ -32,16 +32,15 @@
             this.tilePedirCarta = new MetroFramework.Controls.MetroTile();
             this.pnlBotones = new MetroFramework.Controls.MetroPanel();
             this.trackFichas = new MetroFramework.Controls.MetroTrackBar();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlCartasCasa = new System.Windows.Forms.Panel();
             this.lblFichas = new MetroFramework.Controls.MetroLabel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlCartasJugador = new System.Windows.Forms.Panel();
             this.tilePlantarse = new MetroFramework.Controls.MetroTile();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileApostar = new MetroFramework.Controls.MetroTile();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlMain = new System.Windows.Forms.Panel();
             this.pBArriba = new System.Windows.Forms.PictureBox();
             this.pbDebajo = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.picFichas = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblSi = new System.Windows.Forms.Label();
@@ -57,10 +56,9 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblPensando = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBArriba)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebajo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFichas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -122,14 +120,14 @@
             this.trackFichas.Value = 2;
             this.trackFichas.ValueChanged += new System.EventHandler(this.trackFichas_ValueChanged);
             // 
-            // panel3
+            // pnlCartasCasa
             // 
-            this.panel3.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Location = new System.Drawing.Point(23, 40);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(323, 129);
-            this.panel3.TabIndex = 3;
+            this.pnlCartasCasa.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.pnlCartasCasa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlCartasCasa.Location = new System.Drawing.Point(23, 40);
+            this.pnlCartasCasa.Name = "pnlCartasCasa";
+            this.pnlCartasCasa.Size = new System.Drawing.Size(323, 129);
+            this.pnlCartasCasa.TabIndex = 3;
             // 
             // lblFichas
             // 
@@ -146,14 +144,14 @@
             this.lblFichas.UseCustomBackColor = true;
             this.lblFichas.UseCustomForeColor = true;
             // 
-            // panel2
+            // pnlCartasJugador
             // 
-            this.panel2.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(163, 302);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(323, 129);
-            this.panel2.TabIndex = 2;
+            this.pnlCartasJugador.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.pnlCartasJugador.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlCartasJugador.Location = new System.Drawing.Point(163, 302);
+            this.pnlCartasJugador.Name = "pnlCartasJugador";
+            this.pnlCartasJugador.Size = new System.Drawing.Size(323, 129);
+            this.pnlCartasJugador.TabIndex = 2;
             // 
             // tilePlantarse
             // 
@@ -199,18 +197,18 @@
             this.tileApostar.UseSelectable = true;
             this.tileApostar.Click += new System.EventHandler(this.tileApostar_Click);
             // 
-            // panel4
+            // pnlMain
             // 
-            this.panel4.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel4.Controls.Add(this.lblPensando);
-            this.panel4.Controls.Add(this.panel6);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.menuStrip1);
-            this.panel4.Controls.Add(this.lblSi);
-            this.panel4.Location = new System.Drawing.Point(0, 5);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(497, 530);
-            this.panel4.TabIndex = 13;
+            this.pnlMain.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.pnlMain.Controls.Add(this.lblPensando);
+            this.pnlMain.Controls.Add(this.panel6);
+            this.pnlMain.Controls.Add(this.panel5);
+            this.pnlMain.Controls.Add(this.menuStrip1);
+            this.pnlMain.Controls.Add(this.lblSi);
+            this.pnlMain.Location = new System.Drawing.Point(0, 5);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(497, 530);
+            this.pnlMain.TabIndex = 13;
             // 
             // pBArriba
             // 
@@ -235,18 +233,6 @@
             this.pbDebajo.TabIndex = 10;
             this.pbDebajo.TabStop = false;
             this.pbDebajo.WaitOnLoad = true;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.pictureBox7.BackgroundImage = global::Blackjack.Properties.Resources._QS;
-            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(231, 316);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(76, 103);
-            this.pictureBox7.TabIndex = 8;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Visible = false;
             // 
             // picFichas
             // 
@@ -287,10 +273,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menúToolStripMenuItem,
             this.partidasToolStripMenuItem});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(497, 23);
+            this.menuStrip1.Size = new System.Drawing.Size(497, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -300,14 +285,15 @@
             this.reiniciarToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.menúToolStripMenuItem.Name = "menúToolStripMenuItem";
-            this.menúToolStripMenuItem.Size = new System.Drawing.Size(50, 19);
+            this.menúToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menúToolStripMenuItem.Text = "Menú";
             // 
             // reiniciarToolStripMenuItem
             // 
             this.reiniciarToolStripMenuItem.Name = "reiniciarToolStripMenuItem";
             this.reiniciarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reiniciarToolStripMenuItem.Text = "Reiniciar juego";
+            this.reiniciarToolStripMenuItem.Text = "Nuevo juego";
+            this.reiniciarToolStripMenuItem.Click += new System.EventHandler(this.reiniciarToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -388,28 +374,27 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 533);
+            this.ControlBox = false;
             this.Controls.Add(this.picFichas);
             this.Controls.Add(this.pnlBotones);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.pBArriba);
             this.Controls.Add(this.pbDebajo);
-            this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.lblFichas);
             this.Controls.Add(this.tileApostar);
             this.Controls.Add(this.trackFichas);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlCartasJugador);
+            this.Controls.Add(this.pnlCartasCasa);
+            this.Controls.Add(this.pnlMain);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Pantalla";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.pnlBotones.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.pnlMain.ResumeLayout(false);
+            this.pnlMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBArriba)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebajo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFichas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -429,15 +414,14 @@
         private MetroFramework.Controls.MetroTile tilePlantarse;
         private System.Windows.Forms.PictureBox pbDebajo;
         private MetroFramework.Controls.MetroTrackBar trackFichas;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlCartasCasa;
         private MetroFramework.Controls.MetroLabel lblFichas;
         private System.Windows.Forms.PictureBox pBArriba;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel pnlCartasJugador;
         private System.Windows.Forms.PictureBox picFichas;
         private System.Windows.Forms.Panel panel1;
         private MetroFramework.Controls.MetroTile tileApostar;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Label lblSi;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menúToolStripMenuItem;
